@@ -88,7 +88,7 @@ h1 {
   font-size: 45px;
 }
 .calendar {
-  margin: 0 10rem;
+  padding-right: 5rem;
   border: none;
   outline: none;
   background: white;
@@ -97,7 +97,7 @@ h1 {
 }
 
 button {
-  margin: 0 10rem;
+  padding-left: 5rem;
   border: none;
   outline: none;
   background: white;
