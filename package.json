@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "vuejs-datepicker": "^1.6.2",
+    "vuex-persistedstate": "^3.1.0"
+  }
+}
