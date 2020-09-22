@@ -7,6 +7,12 @@
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
+* {
+  margin: 0 auto;
+  font-family: "Permanent Marker", cursive;
+  color: black;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

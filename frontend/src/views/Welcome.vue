@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>ZenCal</h1>
-    <img src="ui/src/assets/logo.png" alt />
+    <img src="../assets/logo.png" alt />
     <h2>Need to sign up?</h2>
     <h2
       :class="mode == 'Sign Up' ? 'text-blue-400' : 'text-gray-200'"
@@ -51,13 +51,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 * {
   margin: 0 auto;
   font-family: "Permanent Marker", cursive;
   color: black;
 }
-
 h1 {
   margin-top: 5rem;
   margin-bottom: 2rem;
@@ -69,7 +68,7 @@ h2 {
 }
 
 form {
-  margin: 6rem auto;
+  margin: 5rem auto;
   display: grid;
   grid-template: row;
   row-gap: 2rem;
@@ -103,5 +102,8 @@ form {
   border: none;
   outline: none;
   background: white;
+}
+img {
+  width: 30%;
 }
 </style>

@@ -13,6 +13,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     events: [],
+    tasks: [],
   },
   mutations: {
     ...vuexfireMutations,
@@ -24,6 +25,9 @@ export default new Vuex.Store({
   actions: {
     bindEvents: firestoreAction((context) => {
       return context.bindFirestoreRef("events", db.collection("events"));
+    }),
+    bindTasks: firestoreAction((context) => {
+      return context.bindFirestoreRef("tasks", db.collection("tasks"));
     }),
   },
   modules: {},

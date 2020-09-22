@@ -11,6 +11,7 @@ auth.onAuthStateChanged((user) => {
   store.commit("SET_USER", user);
   if (user) {
     store.dispatch("bindEvents");
+    store.dispatch("bindTasks");
   }
 });
 
