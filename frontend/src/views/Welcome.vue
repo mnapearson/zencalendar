@@ -1,7 +1,12 @@
 <template>
   <div>
     <h1>ZenCal</h1>
-    <img src="../assets/logo.png" alt />
+
+    <img
+      src="https://media.istockphoto.com/photos/yin-yang-great-ultimate-chinese-medicine-painting-picture-id537282780?k=6&m=537282780&s=612x612&w=0&h=fFmAyyuzguP3h0dAFJAMMQrLrV9ETluvzGX4potEXB8="
+      alt
+    />
+
     <h2>Need to sign up?</h2>
     <h2
       :class="mode == 'Sign Up' ? 'text-blue-400' : 'text-gray-200'"
@@ -59,16 +64,40 @@ export default {
 }
 h1 {
   margin-top: 5rem;
-  margin-bottom: 2rem;
   font-size: 60px;
+}
+
+.stage {
+  width: 300px;
+  height: 300px;
+  perspective: 1200px;
+}
+
+.ball .shadow {
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  transform: rotateX(90deg) translateZ(-150px);
+  z-index: -1;
 }
 
 h2 {
   font-size: 18px;
 }
 
+img {
+  margin: 2rem;
+}
+
 form {
-  margin: 5rem auto;
+  margin: 4rem auto;
   display: grid;
   grid-template: row;
   row-gap: 2rem;
