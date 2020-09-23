@@ -1,6 +1,9 @@
 <template>
   <div>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <router-link class="create" to="/create">Create</router-link>
     <button @click="logout">logout</button>
     <h1>Calendar</h1>
@@ -11,18 +14,18 @@
       <div id="events-container">
         <h2>Events</h2>
         <div class="event" v-for="event in $store.state.events" :key="event.id">
-          <h3>{{event.name}}</h3>
-          <h3>{{event.date}}</h3>
-          <h3>{{event.location}}</h3>
-          <p>{{event.description}}</p>
+          <h3>{{ event.name }}</h3>
+
+          <h3>{{ event.location }}</h3>
+          <p>{{ event.description }}</p>
         </div>
       </div>
       <div id="tasks-container">
         <h2>Tasks</h2>
         <div class="task" v-for="task in $store.state.tasks" :key="task.id">
-          <h3>{{task.task}}</h3>
-          <h3>{{task.deadline}}</h3>
-          <p>{{task.notes}}</p>
+          <h3>{{ task.task }}</h3>
+          <p>{{ task.deadline }}</p>
+          <p>{{ task.notes }}</p>
         </div>
       </div>
     </div>
@@ -34,15 +37,15 @@ import SingleDatePicker from "vue-single-date-picker";
 
 export default {
   components: {
-    SingleDatePicker
+    SingleDatePicker,
   },
   methods: {
     logout() {
       console.log("logout");
       this.$router.push({ name: "Welcome" });
     },
-    viewDay() {}
-  }
+    viewDay() {},
+  },
 };
 </script>
 
