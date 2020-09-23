@@ -6,9 +6,14 @@
     <div class="create-forms">
       <div class="new-event">
         <h2>New Event</h2>
-        <form @submit.prevent="submit">
+        <form ref="event" @submit.prevent="submit">
           <input v-model="event.name" placeholder="Name" />
-          <input v-model="event.date" placeholder="Date" />
+          <datepicker
+            class="event-date"
+            v-model="event.date"
+            name="event-date"
+            placeholder="date"
+          ></datepicker>
           <input v-model="event.location" placeholder="Location" />
           <textarea v-model="event.description" placeholder="Description" />
           <div>
@@ -18,9 +23,14 @@
       </div>
       <div class="new-task">
         <h2>New Task</h2>
-        <form @submit.prevent="submit">
+        <form ref="task" @submit.prevent="submit">
           <input v-model="task.task" placeholder="Task" />
-          <input v-model="task.deadline" placeholder="deadline" />
+          <datepicker
+            class="task-deadline"
+            v-model="task.deadline"
+            name="task-deadline"
+            placeholder="deadline"
+          ></datepicker>
           <textarea v-model="task.notes" placeholder="notes" />
           <div>
             <button class="save" @click="submitTask">Save</button>
@@ -33,6 +43,7 @@
 
 <script>
 import { auth, db } from "@/firebase";
+import Datepicker from "vuejs-datepicker";
 
 export default {
   data() {
@@ -41,13 +52,13 @@ export default {
         name: "",
         date: "",
         location: "",
-        description: ""
+        description: "",
       },
       task: {
         task: "",
         deadline: "",
-        notes: ""
-      }
+        notes: "",
+      },
     };
   },
   methods: {
@@ -55,23 +66,28 @@ export default {
       db.collection("events").add({
         ...this.event,
         userId: this.$store.state.user.uid,
-        createdAt: new Date()
+        createdAt: new Date(),
       });
       alert("Event Saved");
+      this.$refs.event.reset();
     },
     submitTask() {
       db.collection("tasks").add({
         ...this.task,
         userId: this.$store.state.user.uid,
-        createdAt: new Date()
+        createdAt: new Date(),
       });
       alert("Task Saved");
+      this.$refs.task.reset();
     },
     async logout() {
       await auth.signOut();
       this.$router.push({ name: "Welcome" });
-    }
-  }
+    },
+  },
+  components: {
+    Datepicker,
+  },
 };
 </script>
 
@@ -111,7 +127,29 @@ button {
   justify-content: center;
 }
 
+.new-event {
+  margin-right: 0;
+}
+
+.new-task {
+  margin-left: 0;
+}
+
 input {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.event-date {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.task-deadline {
   margin: 1rem;
   display: flex;
   flex-direction: column;

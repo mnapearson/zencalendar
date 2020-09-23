@@ -88,7 +88,7 @@ h2 {
 }
 
 .today {
-  margin-top: 5rem;
+  margin-top: 3rem;
   flex-direction: row;
 }
 
