@@ -11,10 +11,18 @@
     <h2
       :class="mode == 'Sign Up' ? 'text-blue-400' : 'text-gray-200'"
       @click="mode = 'Sign Up'"
-    >(Do it.)</h2>
+    >
+      (Do it.)
+    </h2>
 
     <form @submit.prevent="submit">
-      <input class="email" type="text" name="email" v-model="email" placeholder="email" />
+      <input
+        class="email"
+        type="text"
+        name="email"
+        v-model="email"
+        placeholder="email"
+      />
       <input
         class="password"
         type="password"
@@ -22,7 +30,12 @@
         v-model="password"
         placeholder="password"
       />
-      <input class="signup" :class="mode == 'Welcome'" type="submit" :value="mode" />
+      <input
+        class="signup"
+        :class="mode == 'Welcome'"
+        type="submit"
+        :value="mode"
+      />
     </form>
   </div>
 </template>
@@ -46,11 +59,11 @@ export default {
     async submit() {
       if (this.mode == "Welcome") {
         await auth.signInWithEmailAndPassword(this.email, this.password);
-        this.$router.push({ name: "Calendar" });
       } else {
         await auth.createUserWithEmailAndPassword(this.email, this.password);
-        this.$router.push({ name: "Calendar" });
       }
+
+      this.$router.push({ name: "Calendar" });
     }
   }
 };

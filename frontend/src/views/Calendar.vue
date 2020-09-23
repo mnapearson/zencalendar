@@ -8,14 +8,18 @@
     <button @click="logout">logout</button>
     <h1>Calendar</h1>
     <div class="calendar">
-      <SingleDatePicker />
+      <SingleDatePicker @selectDate="selectDate" />
     </div>
     <div class="today">
       <div id="events-container">
         <h2>Events</h2>
-        <div class="event" v-for="event in $store.state.events" :key="event.id">
+        <div
+          class="event"
+          v-for="event in eventsOnSelectedDate"
+          :key="event.id"
+        >
           <h3>{{ event.name }}</h3>
-
+          <h3>{{ event.date.toDate().toLocaleDateString() }}</h3>
           <h3>{{ event.location }}</h3>
           <p>{{ event.description }}</p>
         </div>
@@ -24,7 +28,7 @@
         <h2>Tasks</h2>
         <div class="task" v-for="task in $store.state.tasks" :key="task.id">
           <h3>{{ task.task }}</h3>
-          <p>{{ task.deadline }}</p>
+          <h3>{{ task.deadline }}</h3>
           <p>{{ task.notes }}</p>
         </div>
       </div>
@@ -37,15 +41,40 @@ import SingleDatePicker from "vue-single-date-picker";
 
 export default {
   components: {
-    SingleDatePicker,
+    SingleDatePicker
+  },
+  data() {
+    return {
+      date: null
+    };
   },
   methods: {
     logout() {
       console.log("logout");
       this.$router.push({ name: "Welcome" });
     },
-    viewDay() {},
+    selectDate(date) {
+      this.date = date;
+    },
+    viewDay() {}
   },
+  computed: {
+    eventsOnSelectedDate() {
+      const allEvents = this.$store.state.events;
+      return allEvents.filter(event => {
+        if (!this.date || !event.date) return false;
+
+        const eventDate = event.date.toDate();
+        console.log(eventDate, this.date);
+
+        return (
+          this.date.year == eventDate.getFullYear() &&
+          this.date.month == eventDate.getMonth() &&
+          this.date.date == eventDate.getDate()
+        );
+      });
+    }
+  }
 };
 </script>
 
