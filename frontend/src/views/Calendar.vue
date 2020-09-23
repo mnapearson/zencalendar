@@ -23,14 +23,16 @@
           <h3>{{ event.location }}</h3>
           <p>{{ event.description }}</p>
         </div>
+        <button @click="deleteEvent">delete</button>
       </div>
       <div id="tasks-container">
         <h2>Tasks</h2>
-        <div class="task" v-for="task in $store.state.tasks" :key="task.id">
+        <div class="task" v-for="task in tasksOnSelectedDate" :key="task.id">
           <h3>{{ task.task }}</h3>
-          <h3>{{ task.deadline }}</h3>
+          <h3>{{ task.date.toDate().toLocaleDateString() }}</h3>
           <p>{{ task.notes }}</p>
         </div>
+        <button @click="deleteTask">delete</button>
       </div>
     </div>
   </div>
@@ -56,6 +58,13 @@ export default {
     selectDate(date) {
       this.date = date;
     },
+    deleteEvent() {
+      console.log("delete");
+    },
+    deleteTask() {
+      console.log("delete");
+    },
+
     viewDay() {}
   },
   computed: {
@@ -71,6 +80,21 @@ export default {
           this.date.year == eventDate.getFullYear() &&
           this.date.month == eventDate.getMonth() &&
           this.date.date == eventDate.getDate()
+        );
+      });
+    },
+    tasksOnSelectedDate() {
+      const allTasks = this.$store.state.events;
+      return allTasks.filter(task => {
+        if (!this.date || !task.date) return false;
+
+        const taskDate = task.date.toDate();
+        console.log(taskDate, this.date);
+
+        return (
+          this.date.year == taskDate.getFullYear() &&
+          this.date.month == taskDate.getMonth() &&
+          this.date.date == taskDate.getDate()
         );
       });
     }
@@ -122,19 +146,20 @@ h2 {
 .today {
   margin-top: 3rem;
   flex-direction: row;
+  justify-content: left;
 }
 
 #events-container {
   margin: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-direction: row;
 }
 
 #tasks-container {
   margin: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-direction: row;
 }
 </style>

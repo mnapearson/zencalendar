@@ -6,7 +6,7 @@
     <div class="create-forms">
       <div class="new-event">
         <h2>New Event</h2>
-        <form ref="event">
+        <form ref="event" @submit.prevent="">
           <input v-model="event.name" placeholder="Name" />
           <datepicker
             class="event-date"
@@ -23,12 +23,12 @@
       </div>
       <div class="new-task">
         <h2>New Task</h2>
-        <form ref="task">
+        <form ref="task" @submit.prevent="">
           <input v-model="task.task" placeholder="Task" />
           <datepicker
             class="task-deadline"
-            v-model="task.deadline"
-            name="task-deadline"
+            v-model="task.date"
+            name="task-date"
             placeholder="deadline"
           ></datepicker>
           <textarea v-model="task.notes" placeholder="notes" />
@@ -56,29 +56,29 @@ export default {
       },
       task: {
         task: "",
-        deadline: "",
+        date: "",
         notes: ""
       }
     };
   },
   methods: {
-    submitEvent() {
-      db.collection("events").add({
+    async submitEvent() {
+      await db.collection("events").add({
         ...this.event,
         userId: this.$store.state.user.uid,
         createdAt: new Date()
       });
       alert("Event Saved");
-      this.$refs.event.reset();
+      // this.$refs.event.reset();
     },
-    submitTask() {
-      db.collection("tasks").add({
+    async submitTask() {
+      await db.collection("tasks").add({
         ...this.task,
         userId: this.$store.state.user.uid,
         createdAt: new Date()
       });
       alert("Task Saved");
-      this.$refs.task.reset();
+      // this.$refs.task.reset();
     },
     async logout() {
       await auth.signOut();
