@@ -1,28 +1,35 @@
 <template>
   <div>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <router-link class="create" to="/create">Create</router-link>
     <button @click="logout">logout</button>
     <h1>Calendar</h1>
     <div class="calendar">
-      <SingleDatePicker />
+      <SingleDatePicker @selectDate="selectDate" />
     </div>
     <div class="today">
       <div id="events-container">
         <h2>Events</h2>
-        <div class="event" v-for="event in $store.state.events" :key="event.id">
-          <h3>{{event.name}}</h3>
-          <h3>{{event.date}}</h3>
-          <h3>{{event.location}}</h3>
-          <p>{{event.description}}</p>
+        <div
+          class="event"
+          v-for="event in eventsOnSelectedDate"
+          :key="event.id"
+        >
+          <h3>{{ event.name }}</h3>
+          <h3>{{ event.date.toDate().toLocaleDateString() }}</h3>
+          <h3>{{ event.location }}</h3>
+          <p>{{ event.description }}</p>
         </div>
       </div>
       <div id="tasks-container">
         <h2>Tasks</h2>
         <div class="task" v-for="task in $store.state.tasks" :key="task.id">
-          <h3>{{task.task}}</h3>
-          <h3>{{task.deadline}}</h3>
-          <p>{{task.notes}}</p>
+          <h3>{{ task.task }}</h3>
+          <h3>{{ task.deadline }}</h3>
+          <p>{{ task.notes }}</p>
         </div>
       </div>
     </div>
@@ -36,12 +43,37 @@ export default {
   components: {
     SingleDatePicker
   },
+  data() {
+    return {
+      date: null
+    };
+  },
   methods: {
     logout() {
       console.log("logout");
       this.$router.push({ name: "Welcome" });
     },
+    selectDate(date) {
+      this.date = date;
+    },
     viewDay() {}
+  },
+  computed: {
+    eventsOnSelectedDate() {
+      const allEvents = this.$store.state.events;
+      return allEvents.filter(event => {
+        if (!this.date || !event.date) return false;
+
+        const eventDate = event.date.toDate();
+        console.log(eventDate, this.date);
+
+        return (
+          this.date.year == eventDate.getFullYear() &&
+          this.date.month == eventDate.getMonth() &&
+          this.date.date == eventDate.getDate()
+        );
+      });
+    }
   }
 };
 </script>

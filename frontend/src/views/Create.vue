@@ -6,7 +6,7 @@
     <div class="create-forms">
       <div class="new-event">
         <h2>New Event</h2>
-        <form ref="event" @submit.prevent="submit">
+        <form ref="event">
           <input v-model="event.name" placeholder="Name" />
           <datepicker
             class="event-date"
@@ -23,7 +23,7 @@
       </div>
       <div class="new-task">
         <h2>New Task</h2>
-        <form ref="task" @submit.prevent="submit">
+        <form ref="task">
           <input v-model="task.task" placeholder="Task" />
           <datepicker
             class="task-deadline"
@@ -52,13 +52,13 @@ export default {
         name: "",
         date: "",
         location: "",
-        description: "",
+        description: ""
       },
       task: {
         task: "",
         deadline: "",
-        notes: "",
-      },
+        notes: ""
+      }
     };
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
       db.collection("events").add({
         ...this.event,
         userId: this.$store.state.user.uid,
-        createdAt: new Date(),
+        createdAt: new Date()
       });
       alert("Event Saved");
       this.$refs.event.reset();
@@ -75,7 +75,7 @@ export default {
       db.collection("tasks").add({
         ...this.task,
         userId: this.$store.state.user.uid,
-        createdAt: new Date(),
+        createdAt: new Date()
       });
       alert("Task Saved");
       this.$refs.task.reset();
@@ -83,11 +83,11 @@ export default {
     async logout() {
       await auth.signOut();
       this.$router.push({ name: "Welcome" });
-    },
+    }
   },
   components: {
-    Datepicker,
-  },
+    Datepicker
+  }
 };
 </script>
 
