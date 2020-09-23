@@ -18,7 +18,7 @@
           <input v-model="event.time" placeholder="time" />
           <textarea v-model="event.description" placeholder="Description" />
           <div>
-            <button class="save" @click="submitEvent">Save</button>
+            <button class="save" @click="clearEvent">Save</button>
           </div>
         </form>
       </div>
@@ -35,7 +35,7 @@
           <input v-model="task.time" placeholder="time" />
           <textarea v-model="task.notes" placeholder="notes" />
           <div>
-            <button class="save" @click="submitTask">Save</button>
+            <button class="save" @click="clearTask">Save</button>
           </div>
         </form>
       </div>
@@ -84,6 +84,14 @@ export default {
       });
       alert("Task Saved");
       // this.$refs.task.reset();
+    },
+    async clearTask() {
+      await this.submitTask();
+      this.$refs.task.reset();
+    },
+    async clearEvent() {
+      await this.submitEvent();
+      this.$refs.event.reset();
     },
     async logout() {
       await auth.signOut();
