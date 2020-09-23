@@ -15,6 +15,7 @@
             placeholder="date"
           ></datepicker>
           <input v-model="event.location" placeholder="Location" />
+          <input v-model="event.time" placeholder="time" />
           <textarea v-model="event.description" placeholder="Description" />
           <div>
             <button class="save" @click="submitEvent">Save</button>
@@ -31,6 +32,7 @@
             name="task-date"
             placeholder="deadline"
           ></datepicker>
+          <input v-model="task.time" placeholder="time" />
           <textarea v-model="task.notes" placeholder="notes" />
           <div>
             <button class="save" @click="submitTask">Save</button>
@@ -51,12 +53,15 @@ export default {
       event: {
         name: "",
         date: "",
+        time: "",
         location: "",
+
         description: ""
       },
       task: {
         task: "",
         date: "",
+        time: "",
         notes: ""
       }
     };

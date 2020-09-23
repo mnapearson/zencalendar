@@ -19,7 +19,7 @@
           :key="event.id"
         >
           <h3>{{ event.name }}</h3>
-          <h3>{{ event.date.toDate().toLocaleDateString() }}</h3>
+          <h3>{{ event.time }}</h3>
           <h3>{{ event.location }}</h3>
           <p>{{ event.description }}</p>
         </div>
@@ -29,7 +29,7 @@
         <h2>Tasks</h2>
         <div class="task" v-for="task in tasksOnSelectedDate" :key="task.id">
           <h3>{{ task.task }}</h3>
-          <h3>{{ task.date.toDate().toLocaleDateString() }}</h3>
+          <h3>{{ task.time }}</h3>
           <p>{{ task.notes }}</p>
         </div>
         <button @click="deleteTask">delete</button>
@@ -84,7 +84,7 @@ export default {
       });
     },
     tasksOnSelectedDate() {
-      const allTasks = this.$store.state.events;
+      const allTasks = this.$store.state.tasks;
       return allTasks.filter(task => {
         if (!this.date || !task.date) return false;
 

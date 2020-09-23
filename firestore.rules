@@ -3,11 +3,11 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /events/{event} {
       allow write: if request.resource.data.userId == request.auth.uid;
-      allow read: if event.userId == request.auth.uid;
+      allow read: if resource.data.userId == request.auth.uid;
     }
     match /tasks/{task} {
       allow write: if request.resource.data.userId == request.auth.uid;
-      allow read: if task.userId == request.auth.uid;
+      allow read: if resource.data.userId == request.auth.uid;
     }
   }
 }
