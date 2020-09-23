@@ -62,42 +62,18 @@ export default {
   font-family: "Permanent Marker", cursive;
   color: black;
 }
+
 h1 {
-  margin-top: 5rem;
+  margin-top: 1rem;
   font-size: 60px;
-}
-
-.stage {
-  width: 300px;
-  height: 300px;
-  perspective: 1200px;
-}
-
-.ball .shadow {
-  position: absolute;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.1) 40%,
-    rgba(0, 0, 0, 0) 50%
-  );
-  transform: rotateX(90deg) translateZ(-150px);
-  z-index: -1;
 }
 
 h2 {
   font-size: 18px;
 }
 
-img {
-  margin: 2rem;
-}
-
 form {
-  margin: 4rem auto;
+  margin: 3rem auto;
   display: grid;
   grid-template: row;
   row-gap: 2rem;
@@ -133,6 +109,6 @@ form {
   background: white;
 }
 img {
-  width: 30%;
+  width: 25%;
 }
 </style>
