@@ -8,13 +8,13 @@
     />
 
     <h2>Need to sign up?</h2>
-    <h2
+    <h3
       class="toggle"
       :class="mode == 'Sign Up' ? 'text-blue-400' : 'text-gray-200'"
       @click="mode = 'Sign Up'"
     >
       (Do it.)
-    </h2>
+    </h3>
 
     <form @submit.prevent="submit">
       <input
@@ -78,12 +78,17 @@ export default {
 }
 
 h1 {
-  margin-top: 1rem;
+  margin: 2rem;
   font-size: 60px;
 }
 
 h2 {
+  margin-top: 2rem;
   font-size: 18px;
+}
+
+h3 {
+  margin-bottom: 2rem;
 }
 
 .toggle:hover {
@@ -92,7 +97,7 @@ h2 {
 }
 
 form {
-  margin: 3rem auto;
+  margin: 1rem auto;
   display: grid;
   grid-template: row;
   row-gap: 2rem;
@@ -132,6 +137,34 @@ form {
   font-size: 18px;
 }
 img {
-  width: 25%;
+  width: 20%;
+
+  -webkit-animation: swirl-in-fwd 2s ease-out both;
+  animation: swirl-in-fwd 2s ease-out both;
+}
+
+@-webkit-keyframes swirl-in-fwd {
+  0% {
+    -webkit-transform: rotate(-540deg) scale(0);
+    transform: rotate(-540deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(1);
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes swirl-in-fwd {
+  0% {
+    -webkit-transform: rotate(-540deg) scale(0);
+    transform: rotate(-540deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(1);
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
 }
 </style>
