@@ -9,10 +9,9 @@
     <section class="view-all">
       <div>
         <h2>events</h2>
-
         <div class="event" v-for="event in $store.state.events" :key="event.id">
           <h3>{{ event.name }}</h3>
-          <p>{{ event.date }}</p>
+          <p>{{ event.date.toDate().toLocaleDateString() }}</p>
           <p>{{ event.time }}</p>
           <p>{{ event.location }}</p>
           <p>{{ event.description }}</p>
@@ -22,7 +21,7 @@
         <h2>tasks</h2>
         <div class="task" v-for="task in $store.state.tasks" :key="task.id">
           <h3>{{ task.task }}</h3>
-          <p>{{ task.date }}</p>
+          <p>{{ task.date.toDate().toLocaleDateString() }}</p>
           <p>{{ task.time }}</p>
           <p>{{ task.notes }}</p>
         </div>
@@ -33,28 +32,12 @@
 
 <script>
 export default {
-  data() {
-    return {
-      date: null
-    };
-  },
   methods: {
     logout() {
       console.log("logout");
       this.$router.push({ name: "Welcome" });
     },
-    computed: {
-      eventsDate() {
-        const eventDate = event.date.toDate();
-
-        return (
-          this.date.year == eventDate.getFullYear() &&
-          this.date.month == eventDate.getMonth() &&
-          this.date.date == eventDate.getDate()
-        );
-      }
-    }
-  }
+  },
 };
 </script>
 

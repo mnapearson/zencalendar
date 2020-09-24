@@ -20,7 +20,6 @@
         >
           <h3>{{ event.name }}</h3>
           <h3>{{ event.time }}</h3>
-
           <h3>{{ event.location }}</h3>
           <p>{{ event.description }}</p>
         </div>

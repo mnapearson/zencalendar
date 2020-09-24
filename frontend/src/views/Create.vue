@@ -55,15 +55,14 @@ export default {
         date: "",
         time: "",
         location: "",
-
-        description: ""
+        description: "",
       },
       task: {
         task: "",
         date: "",
         time: "",
-        notes: ""
-      }
+        notes: "",
+      },
     };
   },
   methods: {
@@ -71,7 +70,7 @@ export default {
       await db.collection("events").add({
         ...this.event,
         userId: this.$store.state.user.uid,
-        createdAt: new Date()
+        createdAt: new Date(),
       });
       alert("Event Saved");
       // this.$refs.event.reset();
@@ -80,7 +79,7 @@ export default {
       await db.collection("tasks").add({
         ...this.task,
         userId: this.$store.state.user.uid,
-        createdAt: new Date()
+        createdAt: new Date(),
       });
       alert("Task Saved");
       // this.$refs.task.reset();
@@ -96,11 +95,11 @@ export default {
     async logout() {
       await auth.signOut();
       this.$router.push({ name: "Welcome" });
-    }
+    },
   },
   components: {
-    Datepicker
-  }
+    Datepicker,
+  },
 };
 </script>
 
