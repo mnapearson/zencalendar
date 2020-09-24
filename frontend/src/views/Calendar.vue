@@ -20,10 +20,10 @@
         >
           <h3>{{ event.name }}</h3>
           <h3>{{ event.time }}</h3>
+
           <h3>{{ event.location }}</h3>
           <p>{{ event.description }}</p>
         </div>
-        <button @click="deleteEvent">delete</button>
       </div>
       <div id="tasks-container">
         <h2>Tasks</h2>
@@ -32,8 +32,10 @@
           <h3>{{ task.time }}</h3>
           <p>{{ task.notes }}</p>
         </div>
-        <button @click="deleteTask">delete</button>
       </div>
+    </div>
+    <div class="view-all">
+      <router-link class="view" to="/view">View All</router-link>
     </div>
   </div>
 </template>
@@ -57,12 +59,6 @@ export default {
     },
     selectDate(date) {
       this.date = date;
-    },
-    deleteEvent() {
-      console.log("delete");
-    },
-    deleteTask() {
-      console.log("delete");
     },
 
     viewDay() {}

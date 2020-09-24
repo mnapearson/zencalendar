@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Welcome from "../views/Welcome.vue";
 import Create from "../views/Create.vue";
 import Calendar from "../views/Calendar.vue";
+import View from "../views/View.vue";
 import store from "../store";
 
 Vue.use(VueRouter);
@@ -11,30 +12,38 @@ const routes = [
   {
     path: "/",
     name: "Welcome",
-    component: Welcome
+    component: Welcome,
   },
   {
     path: "/create",
     name: "Create",
     component: Create,
     meta: {
-      requiresAuth: true
-    }
+      requiresAuth: true,
+    },
   },
   {
     path: "/calendar",
     name: "Calendar",
     component: Calendar,
     meta: {
-      requiresAuth: true
-    }
-  }
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/view",
+    name: "View",
+    component: View,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 router.beforeEach((to, from, next) => {

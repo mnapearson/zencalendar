@@ -9,6 +9,7 @@
 
     <h2>Need to sign up?</h2>
     <h2
+      class="toggle"
       :class="mode == 'Sign Up' ? 'text-blue-400' : 'text-gray-200'"
       @click="mode = 'Sign Up'"
     >
@@ -83,6 +84,10 @@ h1 {
 
 h2 {
   font-size: 18px;
+}
+
+.toggle:hover {
+  color: pink;
 }
 
 form {
