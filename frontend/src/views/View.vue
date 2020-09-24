@@ -7,7 +7,7 @@
     </nav>
     <h1>Upcoming</h1>
     <section class="view-all">
-      <div>
+      <div class="events">
         <h2>events</h2>
         <div class="event" v-for="event in $store.state.events" :key="event.id">
           <h3>{{ event.name }}</h3>
@@ -17,7 +17,7 @@
           <p>{{ event.description }}</p>
         </div>
       </div>
-      <div>
+      <div class="tasks">
         <h2>tasks</h2>
         <div class="task" v-for="task in $store.state.tasks" :key="task.id">
           <h3>{{ task.task }}</h3>
@@ -50,12 +50,20 @@ export default {
   text-decoration: none;
   font-size: 24px;
 }
+.create:hover {
+  color: #cdacbe;
+  font-size: 28px;
+}
 .calendar {
   border: none;
   outline: none;
   background: white;
   text-decoration: none;
   font-size: 24px;
+}
+.calendar:hover {
+  color: #cdacbe;
+  font-size: 28px;
 }
 button {
   margin: 0 8rem;
@@ -64,8 +72,13 @@ button {
   background: white;
   font-size: 24px;
 }
+
+button:hover {
+  color: #cdacbe;
+  font-size: 28px;
+}
 h1 {
-  margin-top: 3rem;
+  margin-top: 4rem;
   margin-bottom: 2rem;
   font-size: 45px;
 }
@@ -77,6 +90,15 @@ h2 {
   margin-top: 4rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+.events {
+  margin-right: 2rem;
+}
+
+.tasks {
+  margin-left: 2rem;
 }
 
 .event {

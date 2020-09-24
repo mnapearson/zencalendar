@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link class="calendar" to="/calendar">Calendar</router-link>
-    <button @click="logout">logout</button>
+    <button class="logout" @click="logout">logout</button>
     <h1>Create</h1>
     <div class="create-forms">
       <div class="new-event">
@@ -39,6 +39,9 @@
           </div>
         </form>
       </div>
+    </div>
+    <div class="view-all">
+      <router-link class="view" to="/view">View All</router-link>
     </div>
   </div>
 </template>
@@ -123,13 +126,22 @@ h1 {
   text-decoration: none;
   font-size: 24px;
 }
+.calendar:hover {
+  color: #cdacbe;
+  font-size: 28px;
+}
 
-button {
+.logout {
   padding-left: 5rem;
   border: none;
   outline: none;
   background: white;
   font-size: 24px;
+}
+
+.logout:hover {
+  color: #cdacbe;
+  font-size: 28px;
 }
 
 .create-forms {
@@ -177,5 +189,24 @@ input {
   border-radius: 10px;
   color: white;
   background: black;
+}
+
+.save:hover {
+  font-size: 18px;
+}
+
+.view-all {
+  margin: 4rem;
+}
+
+.view {
+  outline: none;
+  border: none;
+  text-decoration-line: none;
+  font-size: 20px;
+}
+.view:hover {
+  color: #cdacbe;
+  font-size: 24px;
 }
 </style>

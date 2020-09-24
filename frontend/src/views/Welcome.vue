@@ -51,9 +51,9 @@ export default {
     return {
       form: {
         email: "",
-        password: ""
+        password: "",
       },
-      mode: "Welcome"
+      mode: "Welcome",
     };
   },
   methods: {
@@ -65,8 +65,8 @@ export default {
       }
 
       this.$router.push({ name: "Calendar" });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -87,7 +87,8 @@ h2 {
 }
 
 .toggle:hover {
-  color: pink;
+  font-size: 20px;
+  color: #cdacbe;
 }
 
 form {
@@ -125,6 +126,10 @@ form {
   border: none;
   outline: none;
   background: white;
+}
+.submit:hover {
+  color: #cdacbe;
+  font-size: 18px;
 }
 img {
   width: 25%;

@@ -44,11 +44,11 @@ import SingleDatePicker from "vue-single-date-picker";
 
 export default {
   components: {
-    SingleDatePicker
+    SingleDatePicker,
   },
   data() {
     return {
-      date: null
+      date: null,
     };
   },
   methods: {
@@ -60,12 +60,12 @@ export default {
       this.date = date;
     },
 
-    viewDay() {}
+    viewDay() {},
   },
   computed: {
     eventsOnSelectedDate() {
       const allEvents = this.$store.state.events;
-      return allEvents.filter(event => {
+      return allEvents.filter((event) => {
         if (!this.date || !event.date) return false;
 
         const eventDate = event.date.toDate();
@@ -80,7 +80,7 @@ export default {
     },
     tasksOnSelectedDate() {
       const allTasks = this.$store.state.tasks;
-      return allTasks.filter(task => {
+      return allTasks.filter((task) => {
         if (!this.date || !task.date) return false;
 
         const taskDate = task.date.toDate();
@@ -92,8 +92,8 @@ export default {
           this.date.date == taskDate.getDate()
         );
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -119,12 +119,22 @@ export default {
   font-size: 24px;
 }
 
+.create:hover {
+  color: #cdacbe;
+  font-size: 28px;
+}
+
 button {
   margin: 0 8rem;
   border: none;
   outline: none;
   background: white;
   font-size: 24px;
+}
+
+button:hover {
+  color: #cdacbe;
+  font-size: 28px;
 }
 
 h1 {
@@ -156,5 +166,20 @@ h2 {
   display: flex;
   justify-content: left;
   flex-direction: row;
+}
+
+.view-all {
+  margin: 2rem;
+}
+
+.view {
+  outline: none;
+  border: none;
+  text-decoration-line: none;
+  font-size: 20px;
+}
+.view:hover {
+  color: #cdacbe;
+  font-size: 24px;
 }
 </style>
