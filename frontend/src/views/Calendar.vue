@@ -5,6 +5,7 @@
       rel="stylesheet"
     />
     <nav>
+      <router-link class="create" to="/create">Create</router-link>
       <div class="scene">
         <a href="https://celestial-weather.netlify.app">
           <div class="cube">
@@ -65,7 +66,7 @@
           </div>
         </a>
       </div>
-      <router-link class="create" to="/create">Create</router-link>
+
       <button @click="logout">logout</button>
     </nav>
     <h1>Calendar</h1>
@@ -160,14 +161,12 @@ export default {
 
 <style scoped>
 nav {
-  margin: 1rem;
+  margin: 2rem;
   display: flex;
   justify-content: space-between;
 }
 
 .scene {
-  margin-top: 1rem;
-
   display: flex;
   width: 25px;
   height: 25px;
@@ -263,7 +262,7 @@ nav {
 @import "~vue-single-date-picker/dist/vue-single-date-picker.css";
 
 .single-date-picker__calendar-view {
-  max-width: 400px;
+  max-width: 450px;
 }
 
 .create {
@@ -294,9 +293,9 @@ button:hover {
 }
 
 h1 {
-  margin-top: 3rem;
+  margin-top: 4rem;
   margin-bottom: 2rem;
-  font-size: 45px;
+  font-size: 50px;
 }
 
 h2 {
