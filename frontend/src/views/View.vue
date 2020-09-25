@@ -5,7 +5,7 @@
       <router-link class="calendar" to="/calendar">Calendar</router-link>
       <button @click="logout">logout</button>
     </nav>
-    <h1>Upcoming</h1>
+    <h1 @click="console()">Upcoming</h1>
     <section class="view-all">
       <div class="events">
         <h2>events</h2>
@@ -31,19 +31,24 @@
 </template>
 
 <script>
+import { auth } from "@/firebase";
+
 export default {
   methods: {
-    logout() {
-      console.log("logout");
+    async logout() {
+      await auth.signOut();
       this.$router.push({ name: "Welcome" });
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
+nav {
+  display: flex;
+  justify-content: space-between;
+}
 .create {
-  margin: 0 8rem;
   border: none;
   outline: none;
   background: white;
@@ -66,7 +71,6 @@ export default {
   font-size: 28px;
 }
 button {
-  margin: 0 8rem;
   border: none;
   outline: none;
   background: white;
@@ -90,15 +94,6 @@ h2 {
   margin-top: 4rem;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-}
-
-.events {
-  margin-right: 2rem;
-}
-
-.tasks {
-  margin-left: 2rem;
 }
 
 .event {

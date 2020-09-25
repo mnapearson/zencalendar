@@ -11,14 +11,13 @@
           <datepicker
             class="event-date"
             v-model="event.date"
-            name="event-date"
             placeholder="date"
           ></datepicker>
           <input v-model="event.location" placeholder="Location" />
           <input v-model="event.time" placeholder="time" />
           <textarea v-model="event.description" placeholder="Description" />
           <div>
-            <button class="save" @click="clearEvent">Save</button>
+            <button class="save" @click="submitEvent">Save</button>
           </div>
         </form>
       </div>
@@ -27,22 +26,20 @@
         <form ref="task" @submit.prevent="">
           <input v-model="task.task" placeholder="Task" />
           <datepicker
-            class="task-deadline"
+            class="task-date"
             v-model="task.date"
-            name="task-date"
             placeholder="deadline"
           ></datepicker>
           <input v-model="task.time" placeholder="time" />
           <textarea v-model="task.notes" placeholder="notes" />
           <div>
-            <button class="save" @click="clearTask">Save</button>
+            <button class="save" @click="submitTask">Save</button>
           </div>
         </form>
       </div>
     </div>
-    <div class="view-all">
-      <router-link class="view" to="/view">View All</router-link>
-    </div>
+
+    <router-link class="view" to="/view">View All</router-link>
   </div>
 </template>
 
@@ -58,14 +55,14 @@ export default {
         date: "",
         time: "",
         location: "",
-        description: "",
+        description: ""
       },
       task: {
         task: "",
         date: "",
         time: "",
-        notes: "",
-      },
+        notes: ""
+      }
     };
   },
   methods: {
@@ -73,36 +70,35 @@ export default {
       await db.collection("events").add({
         ...this.event,
         userId: this.$store.state.user.uid,
-        createdAt: new Date(),
+        createdAt: new Date()
       });
+
       alert("Event Saved");
-      // this.$refs.event.reset();
     },
     async submitTask() {
       await db.collection("tasks").add({
         ...this.task,
         userId: this.$store.state.user.uid,
-        createdAt: new Date(),
+        createdAt: new Date()
       });
       alert("Task Saved");
-      // this.$refs.task.reset();
     },
-    async clearTask() {
-      await this.submitTask();
-      this.$refs.task.reset();
-    },
-    async clearEvent() {
-      await this.submitEvent();
-      this.$refs.event.reset();
-    },
+    // async clearTask() {
+    //   await this.submitTask();
+    //   this.$refs.task.reset();
+    // },
+    // async clearEvent() {
+    //   await this.submitEvent();
+    //   this.$refs.event.reset();
+    // },
     async logout() {
       await auth.signOut();
       this.$router.push({ name: "Welcome" });
-    },
+    }
   },
   components: {
-    Datepicker,
-  },
+    Datepicker
+  }
 };
 </script>
 
@@ -173,7 +169,7 @@ input {
   justify-content: center;
 }
 
-.task-deadline {
+.task-date {
   margin: 1rem;
   display: flex;
   flex-direction: column;
@@ -195,11 +191,8 @@ input {
   font-size: 18px;
 }
 
-.view-all {
-  margin: 4rem;
-}
-
 .view {
+  margin: 4rem;
   outline: none;
   border: none;
   text-decoration-line: none;

@@ -7,7 +7,6 @@ import { vuexfireMutations, firestoreAction } from "vuexfire";
 import { db } from "@/firebase";
 
 Vue.use(Vuex);
-Vue.use(require("vue-moment"));
 
 export default new Vuex.Store({
   plugins: [createPersistedState()],

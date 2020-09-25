@@ -40,36 +40,36 @@
 </template>
 
 <script>
+import { auth } from "@/firebase";
 import SingleDatePicker from "vue-single-date-picker";
 
 export default {
   components: {
-    SingleDatePicker,
+    SingleDatePicker
   },
   data() {
     return {
-      date: null,
+      date: null
     };
   },
   methods: {
-    logout() {
-      console.log("logout");
+    async logout() {
+      await auth.signOut();
       this.$router.push({ name: "Welcome" });
     },
     selectDate(date) {
       this.date = date;
     },
-
-    viewDay() {},
+    viewDay() {}
   },
   computed: {
     eventsOnSelectedDate() {
       const allEvents = this.$store.state.events;
-      return allEvents.filter((event) => {
+
+      return allEvents.filter(event => {
         if (!this.date || !event.date) return false;
 
         const eventDate = event.date.toDate();
-        console.log(eventDate, this.date);
 
         return (
           this.date.year == eventDate.getFullYear() &&
@@ -80,11 +80,10 @@ export default {
     },
     tasksOnSelectedDate() {
       const allTasks = this.$store.state.tasks;
-      return allTasks.filter((task) => {
+      return allTasks.filter(task => {
         if (!this.date || !task.date) return false;
 
         const taskDate = task.date.toDate();
-        console.log(taskDate, this.date);
 
         return (
           this.date.year == taskDate.getFullYear() &&
@@ -92,8 +91,8 @@ export default {
           this.date.date == taskDate.getDate()
         );
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
